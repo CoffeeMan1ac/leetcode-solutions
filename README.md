@@ -26,7 +26,7 @@ class Solution {
 ```
 <sub>31.05.2026</sub>
 
-* #### [**242. Valid Anagram**](https://leetcode.com/problems/valid-anagram/)
+* #### [**242. Valid Anagram**](https://leetcode.com/problems/valid-anagram)
 ```java
 class Solution {
     public boolean isAnagram(String s, String t) {
@@ -52,3 +52,24 @@ class Solution {
 }
 ```
 <sub>31.05.2026</sub>
+
+* #### [**1. Two Sum**](https://leetcode.com/problems/two-sum)
+```java
+// Refamiliarized with HashMap's. Took a long time until hit 2ms runtime.
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        HashMap<Integer, Integer> copy = new HashMap<>();
+        int[] answer = new int[2];
+        for (int i = 0; i < nums.length; i++) {
+            if (copy.containsKey(target-nums[i])) {
+                answer[0] = copy.get(target-nums[i]);
+                answer[1] = i;
+                return answer;
+            }
+            copy.put(nums[i], i);
+        }
+        return answer;
+    }
+}
+```
+<sub>01.06.2026</sub>
