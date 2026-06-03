@@ -72,4 +72,69 @@ class Solution {
     }
 }
 ```
+- [ ] Rewrite for 0.57% 0ms Runtime
 <sub>01.06.2026</sub>
+
+* #### [**49. Group Anagrams**](https://leetcode.com/problems/group-anagrams)
+```java
+class Solution {
+    public List<List<String>> groupAnagrams(String[] strs) {
+
+        // List<List<String>> answer = new ArrayList<>();
+
+        // for (int i = 0; i < strs.length; i++) {
+        //     List<String> current = new ArrayList<>(); 
+        //     if(!(strs[i] == null)) {
+        //         current.add(strs[i]);
+        //         char[] arr1 = strs[i].toCharArray();
+        //         Arrays.sort(arr1);
+        //         for (int j = i+1; j < strs.length; j++) {
+        //             if(!(strs[j] == null)) {
+        //                 char[] arr2 = strs[j].toCharArray();
+        //                 Arrays.sort(arr2);
+        //                 if (Arrays.equals(arr1,arr2)) {
+        //                     current.add(strs[j]);
+        //                     strs[j] = null;
+        //                 }
+        //             }
+        //         }
+        //         answer.add(current);
+        //         strs[i] = null;
+        //     }
+        // }
+        // return answer;
+
+        // HashMap version:
+
+        List<List<String>> answer = new ArrayList<>();
+        HashMap<String, List<Integer>> map = new HashMap<>();
+
+        for (int i = 0; i < strs.length; i++) {
+            char[] arr = strs[i].toCharArray();
+            Arrays.sort(arr);
+            String text = new String(arr);
+            if(map.containsKey(text)){
+                List<Integer> arr1 = new ArrayList<>();
+                arr1 = map.get(text);
+                arr1.add(i);
+                map.put(text, arr1);
+            } else {
+                List<Integer> entry = new ArrayList<>();
+                entry.add(i);
+                map.put(text, entry);
+            }
+        }
+        
+        for(Map.Entry<String, List<Integer>> entry : map.entrySet()) {
+            List<String> current = new ArrayList<>(); 
+            for (int j : entry.getValue()) {
+                current.add(strs[j]);
+            }
+            answer.add(current);
+        }
+
+        return answer;
+    }
+}
+```
+<sub>02.06.2026</sub>
