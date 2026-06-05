@@ -80,32 +80,6 @@ class Solution {
 class Solution {
     public List<List<String>> groupAnagrams(String[] strs) {
 
-        // List<List<String>> answer = new ArrayList<>();
-
-        // for (int i = 0; i < strs.length; i++) {
-        //     List<String> current = new ArrayList<>(); 
-        //     if(!(strs[i] == null)) {
-        //         current.add(strs[i]);
-        //         char[] arr1 = strs[i].toCharArray();
-        //         Arrays.sort(arr1);
-        //         for (int j = i+1; j < strs.length; j++) {
-        //             if(!(strs[j] == null)) {
-        //                 char[] arr2 = strs[j].toCharArray();
-        //                 Arrays.sort(arr2);
-        //                 if (Arrays.equals(arr1,arr2)) {
-        //                     current.add(strs[j]);
-        //                     strs[j] = null;
-        //                 }
-        //             }
-        //         }
-        //         answer.add(current);
-        //         strs[i] = null;
-        //     }
-        // }
-        // return answer;
-
-        // HashMap version:
-
         List<List<String>> answer = new ArrayList<>();
         HashMap<String, List<Integer>> map = new HashMap<>();
 
@@ -138,3 +112,38 @@ class Solution {
 }
 ```
 <sub>02.06.2026</sub>
+
+* #### [**347. Top K Frequent Elements**](https://leetcode.com/problems/top-k-frequent-elements)
+```java
+class Solution {
+    public int[] topKFrequent(int[] nums, int k) {
+        int[] answer = new int[k];
+
+        HashMap<Integer,Integer> map = new HashMap<>();
+
+        for (int i = 0; i < nums.length; i++) {
+            if (map.containsKey(nums[i])) {
+                map.put(nums[i], map.get(nums[i])+1);
+            } else {
+                map.put(nums[i],1);
+            }
+        }
+
+        List<List<Integer>> record = new ArrayList<>();
+        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+            List<Integer> listEntry = new ArrayList<>();
+            listEntry.add(entry.getKey());
+            listEntry.add(entry.getValue());
+            record.add(listEntry);
+        }
+
+        record.sort( Comparator.comparingInt((List<Integer> inner) -> inner.get(1)).reversed());
+        for (int i = 0; i < answer.length; i++) {
+            answer[i] = record.get(i).get(0); 
+        }
+        
+        return answer;
+    }
+}
+```
+<sub>05.06.2026</sub>
