@@ -73,6 +73,7 @@ class Solution {
 }
 ```
 - [ ] Rewrite for 0.57% 0ms Runtime
+
 <sub>01.06.2026</sub>
 
 * #### [**49. Group Anagrams**](https://leetcode.com/problems/group-anagrams)
@@ -146,4 +147,6 @@ class Solution {
     }
 }
 ```
+- [ ] Correct for faster runtime
+
 <sub>05.06.2026</sub>
